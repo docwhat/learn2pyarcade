@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import app
-
 import arcade
+
 from GameView import GameView
 
 
@@ -22,6 +21,6 @@ def main():
 
 
 if __name__ == "__main__":
-    app.main()
+    main()
 
 # EOF
