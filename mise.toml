@@ -1,0 +1,34 @@
+[tools]
+python = "{{ get_env(name='PYTHON_VERSION', default='3') }}"
+ruff = "latest"
+uv = "latest"
+
+[env]
+PROJECT_NAME = "{{ config_root | basename }}"
+_.python.venv = { path = ".venv", create = true }
+
+[tasks.bootstrap]
+alias = "b"
+description = "Install dependencies & bootstrap the project"
+run = "uv pip install -r requirements.txt"
+
+[tasks.run]
+description = "Run the application"
+run = "uv run src/app.py"
+
+[tasks.test]
+alias = "t"
+description = "Run tests"
+run = "uv run pytest src/"
+
+[tasks.lint]
+alias= "l"
+description = "Lint the code"
+run = "uv run ruff format src/"
+
+[tasks.info]
+description = "Print project information"
+run = '''
+echo "Project: $PROJECT_NAME"
+echo "Virtual Environment: $VIRTUAL_ENV"
+'''
